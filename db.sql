@@ -1,0 +1,1 @@
+SELECT books.*, (SELECT row_to_json(ass.*) FROM books_book_authors as ass WHERE ass.book_id=books.id AND ass.book_id IS NOT NULL LIMIT 1) as auth, (SELECT ARRAY(SELECT authors.author_id FROM books_book_authors as authors WHERE authors.book_id=books.id)) as author FROM books_book AS books LIMIT 25;
